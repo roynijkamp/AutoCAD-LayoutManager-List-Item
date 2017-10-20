@@ -24,6 +24,7 @@ Partial Class RN_UCLayoutItem
     Private Sub InitializeComponent()
         Me.cmdView = New System.Windows.Forms.Button()
         Me.txtLayoutName = New System.Windows.Forms.TextBox()
+        Me.lblLayoutName = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'cmdView
@@ -32,20 +33,33 @@ Partial Class RN_UCLayoutItem
         Me.cmdView.Name = "cmdView"
         Me.cmdView.Size = New System.Drawing.Size(41, 22)
         Me.cmdView.TabIndex = 0
-        Me.cmdView.Text = "View"
+        Me.cmdView.Text = "VieW"
         Me.cmdView.UseVisualStyleBackColor = True
         '
         'txtLayoutName
         '
         Me.txtLayoutName.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.txtLayoutName.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtLayoutName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLayoutName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLayoutName.Location = New System.Drawing.Point(50, 6)
         Me.txtLayoutName.Margin = New System.Windows.Forms.Padding(3, 3, 8, 3)
         Me.txtLayoutName.Name = "txtLayoutName"
-        Me.txtLayoutName.Size = New System.Drawing.Size(340, 15)
+        Me.txtLayoutName.Size = New System.Drawing.Size(340, 22)
         Me.txtLayoutName.TabIndex = 1
         Me.txtLayoutName.Text = "txtLayoutName"
+        Me.txtLayoutName.Visible = False
+        '
+        'lblLayoutName
+        '
+        Me.lblLayoutName.AutoSize = True
+        Me.lblLayoutName.BackColor = System.Drawing.Color.Transparent
+        Me.lblLayoutName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLayoutName.Location = New System.Drawing.Point(50, 8)
+        Me.lblLayoutName.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
+        Me.lblLayoutName.Name = "lblLayoutName"
+        Me.lblLayoutName.Size = New System.Drawing.Size(99, 16)
+        Me.lblLayoutName.TabIndex = 2
+        Me.lblLayoutName.Text = "lblLayoutName"
         '
         'RN_UCLayoutItem
         '
@@ -53,6 +67,7 @@ Partial Class RN_UCLayoutItem
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.Controls.Add(Me.lblLayoutName)
         Me.Controls.Add(Me.txtLayoutName)
         Me.Controls.Add(Me.cmdView)
         Me.MaximumSize = New System.Drawing.Size(0, 30)
@@ -66,4 +81,5 @@ Partial Class RN_UCLayoutItem
 
     Friend WithEvents cmdView As Windows.Forms.Button
     Friend WithEvents txtLayoutName As Windows.Forms.TextBox
+    Friend WithEvents lblLayoutName As Windows.Forms.Label
 End Class
