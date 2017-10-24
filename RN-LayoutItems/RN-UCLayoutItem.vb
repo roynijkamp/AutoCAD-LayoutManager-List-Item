@@ -6,7 +6,7 @@ Public Class RN_UCLayoutItem
 
     Private oLayoutID As ObjectId
     Private sLayoutName As String = "Not Set"
-    Private sLayoutNameOld As String = "" 'Old value befor edit
+    Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
 
 
@@ -103,5 +103,11 @@ Public Class RN_UCLayoutItem
             updateName()
             RaiseEvent LayoutNameEdit_KeyDown(Me, e)
         End If
+    End Sub
+
+    Public Event Plot_Click(sender As Object, e As EventArgs)
+
+    Private Sub cmdPlot_Click(sender As Object, e As EventArgs) Handles cmdPlot.Click
+        RaiseEvent Plot_Click(Me, e)
     End Sub
 End Class
