@@ -8,6 +8,7 @@ Public Class RN_UCLayoutItem
     Private sLayoutName As String = "Not Set"
     Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
+    Private bCheckState As Boolean = False
 
 
     Public Property LayoutID() As ObjectId
@@ -37,6 +38,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property CheckState As Boolean
+        Get
+            Return bCheckState
+        End Get
+        Set(value As Boolean)
+            bCheckState = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -50,6 +60,12 @@ Public Class RN_UCLayoutItem
         End If
         lblLayoutName.Text = sLayoutName
         lblLayoutName.Visible = Not bIsEdit
+        Return True
+    End Function
+
+    Public Function hideButtons()
+        cmdPlot.Visible = False
+        chkPlot.Visible = False
         Return True
     End Function
 
@@ -109,5 +125,12 @@ Public Class RN_UCLayoutItem
 
     Private Sub cmdPlot_Click(sender As Object, e As EventArgs) Handles cmdPlot.Click
         RaiseEvent Plot_Click(Me, e)
+    End Sub
+
+    Public Event Plot_CheckedChanged(sender As Object, e As EventArgs)
+
+    Private Sub chkPlot_CheckStateChanged(sender As Object, e As EventArgs) Handles chkPlot.CheckStateChanged
+        bCheckState = chkPlot.Checked
+        RaiseEvent Plot_CheckedChanged(Me, e)
     End Sub
 End Class
