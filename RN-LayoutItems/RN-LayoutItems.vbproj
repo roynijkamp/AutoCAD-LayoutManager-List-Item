@@ -29,6 +29,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>RN-LayoutItems.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -118,20 +119,15 @@
   <ItemGroup>
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\icon_import.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_sort_ascending.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_sort_descending.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_view.png" />
+    <None Include="Resources\icon_drag_32x15.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_view.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

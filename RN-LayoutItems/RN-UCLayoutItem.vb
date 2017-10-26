@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.Windows.Forms
 Imports Autodesk.AutoCAD.DatabaseServices
 Public Class RN_UCLayoutItem
@@ -9,6 +10,7 @@ Public Class RN_UCLayoutItem
     Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
     Private bCheckState As Boolean = False
+    Private bGetDragged As Boolean = False
 
 
     Public Property LayoutID() As ObjectId
@@ -47,6 +49,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property GetDragged As Boolean
+        Get
+            Return bGetDragged
+        End Get
+        Set(value As Boolean)
+            bGetDragged = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -69,6 +80,14 @@ Public Class RN_UCLayoutItem
         Return True
     End Function
 
+    Public Function isDragged()
+        If bGetDragged Then
+            Me.BackColor = SystemColors.ActiveCaption
+        Else
+            Me.BackColor = SystemColors.Control
+        End If
+        Return True
+    End Function
 
     ''' <summary>
     ''' 'Function to update name with contents of textbox
@@ -110,6 +129,7 @@ Public Class RN_UCLayoutItem
         'wijzigingen verwerken bij het verlaten van de textbox
         updateName()
     End Sub
+
 
     Public Event LayoutNameEdit_KeyDown(sender As Object, e As EventArgs)
 
