@@ -9,6 +9,7 @@ Public Class RN_UCLayoutItem
     Private sLayoutName As String = "Not Set"
     Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
+    Private bIsModel As Boolean = False
     Private bCheckState As Boolean = False
     Private bGetDragged As Boolean = False
 
@@ -55,6 +56,15 @@ Public Class RN_UCLayoutItem
         End Get
         Set(value As Boolean)
             bGetDragged = value
+        End Set
+    End Property
+
+    Public Property IsModel As Boolean
+        Get
+            Return bIsModel
+        End Get
+        Set(value As Boolean)
+            bIsModel = value
         End Set
     End Property
 
