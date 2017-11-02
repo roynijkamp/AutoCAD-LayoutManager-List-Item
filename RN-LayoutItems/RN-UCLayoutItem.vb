@@ -99,6 +99,12 @@ Public Class RN_UCLayoutItem
         Return True
     End Function
 
+    Public Function SetCheckState(ByVal bChecked As Boolean)
+        chkPlot.Checked = bChecked
+        bCheckState = chkPlot.Checked
+        Return True
+    End Function
+
     ''' <summary>
     ''' 'Function to update name with contents of textbox
     ''' </summary>
