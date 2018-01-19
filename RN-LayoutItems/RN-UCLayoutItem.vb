@@ -6,12 +6,14 @@ Public Class RN_UCLayoutItem
     Inherits System.Windows.Forms.UserControl
 
     Private oLayoutID As ObjectId
+    Private sLayoutHandle As String
     Private sLayoutName As String = "Not Set"
     Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
     Private bIsModel As Boolean = False
     Private bCheckState As Boolean = False
     Private bGetDragged As Boolean = False
+    Private bIsCurrent As Boolean = False
 
 
     Public Property LayoutID() As ObjectId
@@ -20,6 +22,15 @@ Public Class RN_UCLayoutItem
         End Get
         Set(value As ObjectId)
             oLayoutID = value
+        End Set
+    End Property
+
+    Public Property LayoutHandle As String
+        Get
+            Return sLayoutHandle
+        End Get
+        Set(value As String)
+            sLayoutHandle = value
         End Set
     End Property
 
@@ -59,6 +70,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property IsCurrent As Boolean
+        Get
+            Return bIsCurrent
+        End Get
+        Set(value As Boolean)
+            bIsCurrent = value
+        End Set
+    End Property
+
     Public Property IsModel As Boolean
         Get
             Return bIsModel
@@ -93,6 +113,15 @@ Public Class RN_UCLayoutItem
     Public Function isDragged()
         If bGetDragged Then
             Me.BackColor = SystemColors.ActiveCaption
+        Else
+            Me.BackColor = SystemColors.Control
+        End If
+        Return True
+    End Function
+
+    Public Function isCurrentLayout()
+        If bIsCurrent Then
+            Me.BackColor = SystemColors.Info
         Else
             Me.BackColor = SystemColors.Control
         End If
