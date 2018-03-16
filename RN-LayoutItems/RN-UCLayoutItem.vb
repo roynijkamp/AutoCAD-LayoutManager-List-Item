@@ -175,16 +175,17 @@ Public Class RN_UCLayoutItem
         updateName()
     End Sub
 
-
     Public Event LayoutNameEdit_KeyDown(sender As Object, e As EventArgs)
 
     Private Sub txtLayoutName_KeyDown(sender As Object, e As KeyEventArgs) Handles txtLayoutName.KeyDown
-        If e.KeyCode = Keys.Enter Then
+        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.Return Or e.KeyCode = Keys.Tab Then
             'wijzigingen verwerken bij enter in textbox
             updateName()
             RaiseEvent LayoutNameEdit_KeyDown(Me, e)
         End If
     End Sub
+
+
 
     Public Event Plot_Click(sender As Object, e As EventArgs)
 
@@ -198,4 +199,11 @@ Public Class RN_UCLayoutItem
         bCheckState = chkPlot.Checked
         RaiseEvent Plot_CheckedChanged(Me, e)
     End Sub
+
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs)
+        updateName()
+        RaiseEvent LayoutNameEdit_KeyDown(Me, e)
+    End Sub
+
+
 End Class
