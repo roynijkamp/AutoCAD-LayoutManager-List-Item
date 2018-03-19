@@ -205,5 +205,11 @@ Public Class RN_UCLayoutItem
         RaiseEvent LayoutNameEdit_KeyDown(Me, e)
     End Sub
 
-
+    Private Sub txtLayoutName_LostFocus(sender As Object, e As EventArgs) Handles txtLayoutName.LostFocus
+        'wijzigingen verwerken bij focus verlies
+        If bIsEdit Then
+            updateName()
+            RaiseEvent LayoutNameEdit_KeyDown(Me, e)
+        End If
+    End Sub
 End Class
