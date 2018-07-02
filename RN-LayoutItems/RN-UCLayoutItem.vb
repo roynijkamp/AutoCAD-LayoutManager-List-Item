@@ -14,6 +14,7 @@ Public Class RN_UCLayoutItem
     Private bCheckState As Boolean = False
     Private bGetDragged As Boolean = False
     Private bIsCurrent As Boolean = False
+    Private sPlotStyle As String = "Not Set"
 
 
     Public Property LayoutID() As ObjectId
@@ -88,6 +89,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property PlotStyle As String
+        Get
+            Return sPlotStyle
+        End Get
+        Set(value As String)
+            sPlotStyle = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -101,6 +111,23 @@ Public Class RN_UCLayoutItem
         End If
         lblLayoutName.Text = sLayoutName
         lblLayoutName.Visible = Not bIsEdit
+        lblPlotStyle.Text = sPlotStyle
+        lblPlotStyle.Visible = Not bIsEdit
+        'scale width based on largest label
+        Dim dItemWidth As Double = 350
+        If lblLayoutName.Width > lblPlotStyle.Width Then
+            If lblLayoutName.Width > 350 Then
+                dItemWidth = lblLayoutName.Width + 20
+            End If
+        ElseIf lblPlotStyle.Width > lblPlotStyle.Width Then
+            If lblPlotStyle.Width > 350 Then
+                dItemWidth = lblPlotStyle.Width + 20
+            End If
+        End If
+        'set width
+        Me.Width = dItemWidth
+        'redraw
+        Me.Update()
         Return True
     End Function
 

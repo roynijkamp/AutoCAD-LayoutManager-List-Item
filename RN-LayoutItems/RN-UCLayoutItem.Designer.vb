@@ -29,6 +29,7 @@ Partial Class RN_UCLayoutItem
         Me.cmdPlot = New System.Windows.Forms.Button()
         Me.cmdView = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lblPlotStyle = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtLayoutName
@@ -36,7 +37,7 @@ Partial Class RN_UCLayoutItem
         Me.txtLayoutName.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.txtLayoutName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtLayoutName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLayoutName.Location = New System.Drawing.Point(93, 5)
+        Me.txtLayoutName.Location = New System.Drawing.Point(93, 3)
         Me.txtLayoutName.Margin = New System.Windows.Forms.Padding(3, 3, 8, 3)
         Me.txtLayoutName.Name = "txtLayoutName"
         Me.txtLayoutName.Size = New System.Drawing.Size(237, 22)
@@ -49,7 +50,7 @@ Partial Class RN_UCLayoutItem
         Me.lblLayoutName.AutoSize = True
         Me.lblLayoutName.BackColor = System.Drawing.Color.Transparent
         Me.lblLayoutName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLayoutName.Location = New System.Drawing.Point(93, 7)
+        Me.lblLayoutName.Location = New System.Drawing.Point(93, 3)
         Me.lblLayoutName.Margin = New System.Windows.Forms.Padding(3, 3, 3, 0)
         Me.lblLayoutName.Name = "lblLayoutName"
         Me.lblLayoutName.Size = New System.Drawing.Size(99, 16)
@@ -60,7 +61,7 @@ Partial Class RN_UCLayoutItem
         'chkPlot
         '
         Me.chkPlot.AutoSize = True
-        Me.chkPlot.Location = New System.Drawing.Point(73, 9)
+        Me.chkPlot.Location = New System.Drawing.Point(73, 7)
         Me.chkPlot.Name = "chkPlot"
         Me.chkPlot.Size = New System.Drawing.Size(15, 14)
         Me.chkPlot.TabIndex = 4
@@ -88,13 +89,27 @@ Partial Class RN_UCLayoutItem
         Me.ToolTip1.SetToolTip(Me.cmdView, "Overschakelen naar deze layout")
         Me.cmdView.UseVisualStyleBackColor = True
         '
+        'lblPlotStyle
+        '
+        Me.lblPlotStyle.AutoSize = True
+        Me.lblPlotStyle.BackColor = System.Drawing.Color.Transparent
+        Me.lblPlotStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlotStyle.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.lblPlotStyle.Location = New System.Drawing.Point(94, 17)
+        Me.lblPlotStyle.Name = "lblPlotStyle"
+        Me.lblPlotStyle.Size = New System.Drawing.Size(58, 13)
+        Me.lblPlotStyle.TabIndex = 5
+        Me.lblPlotStyle.Text = "lblPlotStyle"
+        '
         'RN_UCLayoutItem
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Controls.Add(Me.lblPlotStyle)
         Me.Controls.Add(Me.chkPlot)
         Me.Controls.Add(Me.cmdPlot)
         Me.Controls.Add(Me.lblLayoutName)
@@ -116,4 +131,5 @@ Partial Class RN_UCLayoutItem
     Friend WithEvents cmdPlot As Windows.Forms.Button
     Friend WithEvents chkPlot As Windows.Forms.CheckBox
     Friend WithEvents ToolTip1 As Windows.Forms.ToolTip
+    Friend WithEvents lblPlotStyle As Windows.Forms.Label
 End Class
