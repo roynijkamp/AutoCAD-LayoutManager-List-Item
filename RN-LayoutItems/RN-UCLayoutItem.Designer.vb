@@ -30,6 +30,8 @@ Partial Class RN_UCLayoutItem
         Me.cmdView = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.lblPlotStyle = New System.Windows.Forms.Label()
+        Me.pcbTransparency = New System.Windows.Forms.PictureBox()
+        CType(Me.pcbTransparency, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtLayoutName
@@ -95,11 +97,24 @@ Partial Class RN_UCLayoutItem
         Me.lblPlotStyle.BackColor = System.Drawing.Color.Transparent
         Me.lblPlotStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPlotStyle.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.lblPlotStyle.Location = New System.Drawing.Point(94, 17)
+        Me.lblPlotStyle.Location = New System.Drawing.Point(116, 17)
         Me.lblPlotStyle.Name = "lblPlotStyle"
         Me.lblPlotStyle.Size = New System.Drawing.Size(58, 13)
         Me.lblPlotStyle.TabIndex = 5
         Me.lblPlotStyle.Text = "lblPlotStyle"
+        '
+        'pcbTransparency
+        '
+        Me.pcbTransparency.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_transparency_off
+        Me.pcbTransparency.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pcbTransparency.Location = New System.Drawing.Point(97, 18)
+        Me.pcbTransparency.Margin = New System.Windows.Forms.Padding(0)
+        Me.pcbTransparency.Name = "pcbTransparency"
+        Me.pcbTransparency.Size = New System.Drawing.Size(12, 12)
+        Me.pcbTransparency.TabIndex = 6
+        Me.pcbTransparency.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.pcbTransparency, "Plot met Transparatie is uitgeschakeld" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Klik om het afdrukken met Transparatie in" &
+        " te schakelen")
         '
         'RN_UCLayoutItem
         '
@@ -109,6 +124,7 @@ Partial Class RN_UCLayoutItem
         Me.AutoSize = True
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Controls.Add(Me.pcbTransparency)
         Me.Controls.Add(Me.lblPlotStyle)
         Me.Controls.Add(Me.chkPlot)
         Me.Controls.Add(Me.cmdPlot)
@@ -120,6 +136,7 @@ Partial Class RN_UCLayoutItem
         Me.Name = "RN_UCLayoutItem"
         Me.Size = New System.Drawing.Size(350, 30)
         Me.ToolTip1.SetToolTip(Me, "Item verslepen")
+        CType(Me.pcbTransparency, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -132,4 +149,5 @@ Partial Class RN_UCLayoutItem
     Friend WithEvents chkPlot As Windows.Forms.CheckBox
     Friend WithEvents ToolTip1 As Windows.Forms.ToolTip
     Friend WithEvents lblPlotStyle As Windows.Forms.Label
+    Friend WithEvents pcbTransparency As Windows.Forms.PictureBox
 End Class

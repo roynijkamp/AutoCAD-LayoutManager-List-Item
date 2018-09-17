@@ -15,6 +15,7 @@ Public Class RN_UCLayoutItem
     Private bGetDragged As Boolean = False
     Private bIsCurrent As Boolean = False
     Private sPlotStyle As String = "Not Set"
+    Private bPlotTransparency As Boolean = False
 
 
     Public Property LayoutID() As ObjectId
@@ -98,6 +99,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property PlotTransparency As Boolean
+        Get
+            Return bPlotTransparency
+        End Get
+        Set(value As Boolean)
+            bPlotTransparency = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -113,6 +123,16 @@ Public Class RN_UCLayoutItem
         lblLayoutName.Visible = Not bIsEdit
         lblPlotStyle.Text = sPlotStyle
         lblPlotStyle.Visible = Not bIsEdit
+        If bPlotTransparency Then
+            pcbTransparency.BackgroundImage = My.Resources.icon_transparency_on
+            ToolTip1.SetToolTip(pcbTransparency, "Plot met Transparatie is ingeschakeld" & vbCrLf & "Klik om het afdrukken met Transparatie uit te schakelen")
+        Else
+            pcbTransparency.BackgroundImage = My.Resources.icon_transparency_off
+            ToolTip1.SetToolTip(pcbTransparency, "Plot met Transparatie is uitgeschakeld" & vbCrLf & "Klik om het afdrukken met Transparatie in te schakelen")
+        End If
+        If Not bIsModel Then
+            pcbTransparency.Visible = Not bIsEdit
+        End If
         'scale width based on largest label
         Dim dItemWidth As Double = 350
         If lblLayoutName.Width > lblPlotStyle.Width Then
@@ -134,6 +154,7 @@ Public Class RN_UCLayoutItem
     Public Function hideButtons()
         cmdPlot.Visible = False
         chkPlot.Visible = False
+        pcbTransparency.Visible = False
         Return True
     End Function
 
