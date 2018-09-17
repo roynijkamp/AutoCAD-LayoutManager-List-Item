@@ -29,8 +29,9 @@ Partial Class RN_UCLayoutItem
         Me.cmdPlot = New System.Windows.Forms.Button()
         Me.cmdView = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.lblPlotStyle = New System.Windows.Forms.Label()
         Me.pcbTransparency = New System.Windows.Forms.PictureBox()
+        Me.lblPlotStyle = New System.Windows.Forms.Label()
+        Me.lblPlotdevice = New System.Windows.Forms.Label()
         CType(Me.pcbTransparency, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -91,18 +92,6 @@ Partial Class RN_UCLayoutItem
         Me.ToolTip1.SetToolTip(Me.cmdView, "Overschakelen naar deze layout")
         Me.cmdView.UseVisualStyleBackColor = True
         '
-        'lblPlotStyle
-        '
-        Me.lblPlotStyle.AutoSize = True
-        Me.lblPlotStyle.BackColor = System.Drawing.Color.Transparent
-        Me.lblPlotStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPlotStyle.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.lblPlotStyle.Location = New System.Drawing.Point(116, 17)
-        Me.lblPlotStyle.Name = "lblPlotStyle"
-        Me.lblPlotStyle.Size = New System.Drawing.Size(58, 13)
-        Me.lblPlotStyle.TabIndex = 5
-        Me.lblPlotStyle.Text = "lblPlotStyle"
-        '
         'pcbTransparency
         '
         Me.pcbTransparency.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_transparency_off
@@ -116,6 +105,31 @@ Partial Class RN_UCLayoutItem
         Me.ToolTip1.SetToolTip(Me.pcbTransparency, "Plot met Transparatie is uitgeschakeld" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Klik om het afdrukken met Transparatie in" &
         " te schakelen")
         '
+        'lblPlotStyle
+        '
+        Me.lblPlotStyle.AutoSize = True
+        Me.lblPlotStyle.BackColor = System.Drawing.Color.Transparent
+        Me.lblPlotStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlotStyle.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.lblPlotStyle.Location = New System.Drawing.Point(116, 17)
+        Me.lblPlotStyle.Name = "lblPlotStyle"
+        Me.lblPlotStyle.Size = New System.Drawing.Size(58, 13)
+        Me.lblPlotStyle.TabIndex = 5
+        Me.lblPlotStyle.Text = "lblPlotStyle"
+        '
+        'lblPlotdevice
+        '
+        Me.lblPlotdevice.AutoSize = True
+        Me.lblPlotdevice.BackColor = System.Drawing.Color.Transparent
+        Me.lblPlotdevice.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlotdevice.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.lblPlotdevice.Location = New System.Drawing.Point(180, 17)
+        Me.lblPlotdevice.Margin = New System.Windows.Forms.Padding(8, 0, 3, 0)
+        Me.lblPlotdevice.Name = "lblPlotdevice"
+        Me.lblPlotdevice.Size = New System.Drawing.Size(67, 13)
+        Me.lblPlotdevice.TabIndex = 5
+        Me.lblPlotdevice.Text = "lblPlotdevice"
+        '
         'RN_UCLayoutItem
         '
         Me.AllowDrop = True
@@ -125,6 +139,7 @@ Partial Class RN_UCLayoutItem
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Controls.Add(Me.pcbTransparency)
+        Me.Controls.Add(Me.lblPlotdevice)
         Me.Controls.Add(Me.lblPlotStyle)
         Me.Controls.Add(Me.chkPlot)
         Me.Controls.Add(Me.cmdPlot)
@@ -150,4 +165,5 @@ Partial Class RN_UCLayoutItem
     Friend WithEvents ToolTip1 As Windows.Forms.ToolTip
     Friend WithEvents lblPlotStyle As Windows.Forms.Label
     Friend WithEvents pcbTransparency As Windows.Forms.PictureBox
+    Friend WithEvents lblPlotdevice As Windows.Forms.Label
 End Class

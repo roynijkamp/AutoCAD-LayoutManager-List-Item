@@ -15,6 +15,7 @@ Public Class RN_UCLayoutItem
     Private bGetDragged As Boolean = False
     Private bIsCurrent As Boolean = False
     Private sPlotStyle As String = "Not Set"
+    Private sPlotDevice As String = "Not Set"
     Private bPlotTransparency As Boolean = False
 
 
@@ -99,6 +100,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property PlotDevice As String
+        Get
+            Return sPlotDevice
+        End Get
+        Set(value As String)
+            sPlotDevice = value
+        End Set
+    End Property
+
     Public Property PlotTransparency As Boolean
         Get
             Return bPlotTransparency
@@ -123,6 +133,8 @@ Public Class RN_UCLayoutItem
         lblLayoutName.Visible = Not bIsEdit
         lblPlotStyle.Text = sPlotStyle
         lblPlotStyle.Visible = Not bIsEdit
+        lblPlotdevice.Text = sPlotDevice
+        lblPlotdevice.Visible = Not bIsEdit
         If bPlotTransparency Then
             pcbTransparency.BackgroundImage = My.Resources.icon_transparency_on
             ToolTip1.SetToolTip(pcbTransparency, "Plot met Transparatie is ingeschakeld" & vbCrLf & "Klik om het afdrukken met Transparatie uit te schakelen")
@@ -144,6 +156,7 @@ Public Class RN_UCLayoutItem
                 dItemWidth = lblPlotStyle.Width + 20
             End If
         End If
+        lblPlotdevice.Left = lblPlotStyle.Left + lblPlotStyle.Width
         'set width
         Me.Width = dItemWidth
         'redraw
@@ -233,6 +246,11 @@ Public Class RN_UCLayoutItem
         End If
     End Sub
 
+    Public Event plotTransparency_Click(sender As Object, e As EventArgs)
+
+    Private Sub pcbTransparency_Click(sender As Object, e As EventArgs) Handles pcbTransparency.Click
+        RaiseEvent plotTransparency_Click(Me, e)
+    End Sub
 
 
     Public Event Plot_Click(sender As Object, e As EventArgs)
@@ -260,4 +278,6 @@ Public Class RN_UCLayoutItem
             RaiseEvent LayoutNameEdit_KeyDown(Me, e)
         End If
     End Sub
+
+
 End Class
