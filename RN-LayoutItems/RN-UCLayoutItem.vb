@@ -17,6 +17,11 @@ Public Class RN_UCLayoutItem
     Private sPlotStyle As String = "Not Set"
     Private sPlotDevice As String = "Not Set"
     Private bPlotTransparency As Boolean = False
+    Private bIsCollapsed As Boolean = True
+    Private iMinHeight As Integer = 40
+    Private iMaxHeigt As Integer = 95
+    Private iControlWidth As Integer = 360
+    Private sPlotOrientation As String = "portrait"
 
 
     Public Property LayoutID() As ObjectId
@@ -118,6 +123,51 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+    Public Property IsCollapsed As Boolean
+        Get
+            Return bIsCollapsed
+        End Get
+        Set(value As Boolean)
+            bIsCollapsed = value
+        End Set
+    End Property
+
+    Public Property ControlWidth As Integer
+        Get
+            Return iControlWidth
+        End Get
+        Set(value As Integer)
+            iControlWidth = value
+        End Set
+    End Property
+
+    Public Property MinHeight As Integer
+        Get
+            Return iMinHeight
+        End Get
+        Set(value As Integer)
+            iMinHeight = value
+        End Set
+    End Property
+
+    Public Property MaxHeight As Integer
+        Get
+            Return iMaxHeigt
+        End Get
+        Set(value As Integer)
+            iMaxHeigt = value
+        End Set
+    End Property
+
+    Public Property PlotOrientation As String
+        Get
+            Return sPlotOrientation
+        End Get
+        Set(value As String)
+            sPlotOrientation = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -127,6 +177,7 @@ Public Class RN_UCLayoutItem
         txtLayoutName.Text = sLayoutName
         txtLayoutName.Visible = bIsEdit
         If bIsEdit Then 'set focus to textbox
+            txtLayoutName.Width = lblLayoutName.Width
             txtLayoutName.Focus()
         End If
         lblLayoutName.Text = sLayoutName
@@ -158,7 +209,26 @@ Public Class RN_UCLayoutItem
         End If
         lblPlotdevice.Left = lblPlotStyle.Left + lblPlotStyle.Width
         'set width
-        Me.Width = dItemWidth
+        If dItemWidth > iControlWidth Then
+            Me.Width = dItemWidth
+        Else
+            Me.Width = iControlWidth
+        End If
+
+        If sPlotOrientation = "portrait" Then
+            radioPortrait.Checked = True
+        Else
+            radioLandscape.Checked = True
+        End If
+        'collapse
+        'If bIsCollapsed Then
+        '    Me.Height = 30
+        '    cmdCollapse.BackgroundImage = My.Resources.icon_collapse
+        'Else
+        '    Me.Height = 90
+        '    cmdCollapse.BackgroundImage = My.Resources.icon_collapse_close
+        'End If
+        collapes()
         'redraw
         Me.Update()
         Return True
@@ -168,6 +238,7 @@ Public Class RN_UCLayoutItem
         cmdPlot.Visible = False
         chkPlot.Visible = False
         pcbTransparency.Visible = False
+        cmdCollapse.Visible = False
         Return True
     End Function
 
@@ -279,5 +350,26 @@ Public Class RN_UCLayoutItem
         End If
     End Sub
 
+    Public Event Collapse_Click(sender As Object, e As EventArgs)
 
+    Private Sub cmdCollapse_Click(sender As Object, e As EventArgs) Handles cmdCollapse.Click
+        bIsCollapsed = Not bIsCollapsed
+        collapes()
+        If bIsCollapsed Then
+            RaiseEvent Collapse_Click(Me, e)
+        End If
+    End Sub
+
+    Function collapes()
+        If bIsCollapsed Then
+            Me.Height = iMinHeight
+            cmdCollapse.BackgroundImage = My.Resources.icon_collapse
+        Else
+            Me.Height = iMaxHeigt
+            cmdCollapse.BackgroundImage = My.Resources.icon_collapse_close
+        End If
+        Me.Update()
+        'MsgBox("bIsCollapsed: " & bIsCollapsed.ToString & " Me.height: " & Me.Height.ToString)
+        Return True
+    End Function
 End Class
