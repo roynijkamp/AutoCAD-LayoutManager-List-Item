@@ -22,6 +22,7 @@ Public Class RN_UCLayoutItem
     Private iMaxHeigt As Integer = 95
     Private iControlWidth As Integer = 360
     Private sPlotOrientation As String = "portrait"
+    Private bDisplayPlotStyle As Boolean = True
 
 
     Public Property LayoutID() As ObjectId
@@ -168,6 +169,15 @@ Public Class RN_UCLayoutItem
         End Set
     End Property
 
+
+    Public Property DisplayPlotStyle As Boolean
+        Get
+            Return bDisplayPlotStyle
+        End Get
+        Set(value As Boolean)
+            bDisplayPlotStyle = value
+        End Set
+    End Property
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -214,20 +224,19 @@ Public Class RN_UCLayoutItem
         Else
             Me.Width = iControlWidth
         End If
-
+        'set plot orientation
         If sPlotOrientation = "portrait" Then
             radioPortrait.Checked = True
         Else
             radioLandscape.Checked = True
         End If
+        'set display plotstyles
+        If bDisplayPlotStyle Then
+            chkPlotStyles.Checked = True
+        Else
+            chkPlotStyles.Checked = False
+        End If
         'collapse
-        'If bIsCollapsed Then
-        '    Me.Height = 30
-        '    cmdCollapse.BackgroundImage = My.Resources.icon_collapse
-        'Else
-        '    Me.Height = 90
-        '    cmdCollapse.BackgroundImage = My.Resources.icon_collapse_close
-        'End If
         collapes()
         'redraw
         Me.Update()
@@ -355,7 +364,7 @@ Public Class RN_UCLayoutItem
     Private Sub cmdCollapse_Click(sender As Object, e As EventArgs) Handles cmdCollapse.Click
         bIsCollapsed = Not bIsCollapsed
         collapes()
-        If bIsCollapsed Then
+        If bIsCollapsed = False Then
             RaiseEvent Collapse_Click(Me, e)
         End If
     End Sub
@@ -369,7 +378,17 @@ Public Class RN_UCLayoutItem
             cmdCollapse.BackgroundImage = My.Resources.icon_collapse_close
         End If
         Me.Update()
-        'MsgBox("bIsCollapsed: " & bIsCollapsed.ToString & " Me.height: " & Me.Height.ToString)
         Return True
     End Function
+
+    Private Sub radioPortrait_CheckedChanged(sender As Object, e As EventArgs) Handles radioPortrait.CheckedChanged
+        RaiseEvent ChangePageSetup(Me, e)
+    End Sub
+
+    Private Sub radioLandscape_CheckedChanged(sender As Object, e As EventArgs) Handles radioLandscape.CheckedChanged
+        RaiseEvent ChangePageSetup(Me, e)
+    End Sub
+
+    Public Event ChangePageSetup(sender As Object, e As EventArgs)
+
 End Class
