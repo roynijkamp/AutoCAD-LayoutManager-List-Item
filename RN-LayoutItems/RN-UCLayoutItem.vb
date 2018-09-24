@@ -23,6 +23,10 @@ Public Class RN_UCLayoutItem
     Private iControlWidth As Integer = 360
     Private sPlotOrientation As String = "portrait"
     Private bDisplayPlotStyle As Boolean = True
+    Private dtPlotMediaList As System.Data.DataTable
+    Private bReadSettings As Boolean = False
+    Private sChoosenMediaSize As String = ""
+    Private iChoosenMediaSizeCurrent As Integer = 0
 
 
     Public Property LayoutID() As ObjectId
@@ -178,6 +182,42 @@ Public Class RN_UCLayoutItem
             bDisplayPlotStyle = value
         End Set
     End Property
+
+    Public Property PlotMediaList As System.Data.DataTable
+        Get
+            Return dtPlotMediaList
+        End Get
+        Set(value As System.Data.DataTable)
+            dtPlotMediaList = value
+        End Set
+    End Property
+
+    Public Property ReadSettings As Boolean
+        Get
+            Return bReadSettings
+        End Get
+        Set(value As Boolean)
+            bReadSettings = value
+        End Set
+    End Property
+
+    Public Property ChoosenMediaSize As String
+        Get
+            Return sChoosenMediaSize
+        End Get
+        Set(value As String)
+            sChoosenMediaSize = value
+        End Set
+    End Property
+
+    Public Property ChoosenMediaSizeCurrent As Integer
+        Get
+            Return iChoosenMediaSizeCurrent
+        End Get
+        Set(value As Integer)
+            iChoosenMediaSizeCurrent = value
+        End Set
+    End Property
     ''' <summary>
     ''' 'Function to update contents of control
     ''' </summary>
@@ -218,6 +258,8 @@ Public Class RN_UCLayoutItem
             End If
         End If
         lblPlotdevice.Left = lblPlotStyle.Left + lblPlotStyle.Width
+        'cmbPapersize.Width = (cmdChangeMediaSize.Left - cmbPapersize.Left) - 10
+        cmbPapersize.Width = (dItemWidth - cmbPapersize.Left) + 40
         'set width
         If dItemWidth > iControlWidth Then
             Me.Width = dItemWidth
@@ -236,10 +278,17 @@ Public Class RN_UCLayoutItem
         Else
             chkPlotStyles.Checked = False
         End If
+        'list plot media
+        cmbPapersize.DataSource = dtPlotMediaList
+        cmbPapersize.DisplayMember = "media"
+        cmbPapersize.ValueMember = "id"
+        cmbPapersize.SelectedIndex = iChoosenMediaSizeCurrent
         'collapse
         collapes()
         'redraw
         Me.Update()
+        'reset just read settings
+        bReadSettings = False
         Return True
     End Function
 
@@ -381,14 +430,36 @@ Public Class RN_UCLayoutItem
         Return True
     End Function
 
+    Public Event ChangePageSetup(sender As Object, e As EventArgs)
+
     Private Sub radioPortrait_CheckedChanged(sender As Object, e As EventArgs) Handles radioPortrait.CheckedChanged
-        RaiseEvent ChangePageSetup(Me, e)
+        sPlotOrientation = "portrait"
+        If radioPortrait.Checked And bReadSettings = False Then
+            RaiseEvent ChangePageSetup(Me, e)
+        End If
     End Sub
 
     Private Sub radioLandscape_CheckedChanged(sender As Object, e As EventArgs) Handles radioLandscape.CheckedChanged
+        sPlotOrientation = "landscape"
+        If radioLandscape.Checked And bReadSettings = False Then
+            RaiseEvent ChangePageSetup(Me, e)
+        End If
+    End Sub
+
+    Public Event ChangeDisplayPlotStyles(sender As Object, e As EventArgs)
+
+    Private Sub chkPlotStyles_CheckedChanged(sender As Object, e As EventArgs) Handles chkPlotStyles.CheckedChanged
+        bDisplayPlotStyle = chkPlotStyles.Checked
         RaiseEvent ChangePageSetup(Me, e)
     End Sub
 
-    Public Event ChangePageSetup(sender As Object, e As EventArgs)
+    Public Event setPlotMediaSize(sender As Object, e As EventArgs)
 
+    Private Sub cmdChangeMediaSize_Click(sender As Object, e As EventArgs) Handles cmdChangeMediaSize.Click
+        RaiseEvent setPlotMediaSize(Me, e)
+    End Sub
+
+    Private Sub cmbPapersize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPapersize.SelectedIndexChanged
+        sChoosenMediaSize = cmbPapersize.SelectedValue
+    End Sub
 End Class

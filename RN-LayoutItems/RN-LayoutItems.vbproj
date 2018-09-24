@@ -138,6 +138,7 @@
     <None Include="Resources\icon_transparency_on.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icon_page_size.png" />
     <None Include="Resources\icon_collapse-close.png" />
     <Content Include="Resources\icon_collapse.png" />
   </ItemGroup>

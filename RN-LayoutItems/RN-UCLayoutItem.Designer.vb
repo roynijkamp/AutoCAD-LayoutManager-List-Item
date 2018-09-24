@@ -37,6 +37,7 @@ Partial Class RN_UCLayoutItem
         Me.radioPortrait = New System.Windows.Forms.RadioButton()
         Me.radioLandscape = New System.Windows.Forms.RadioButton()
         Me.cmbPapersize = New System.Windows.Forms.ComboBox()
+        Me.cmdChangeMediaSize = New System.Windows.Forms.Button()
         CType(Me.pcbTransparency, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -179,11 +180,23 @@ Partial Class RN_UCLayoutItem
         '
         'cmbPapersize
         '
+        Me.cmbPapersize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPapersize.FormattingEnabled = True
         Me.cmbPapersize.Location = New System.Drawing.Point(141, 60)
         Me.cmbPapersize.Name = "cmbPapersize"
         Me.cmbPapersize.Size = New System.Drawing.Size(189, 21)
         Me.cmbPapersize.TabIndex = 11
+        '
+        'cmdChangeMediaSize
+        '
+        Me.cmdChangeMediaSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdChangeMediaSize.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_page_size
+        Me.cmdChangeMediaSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.cmdChangeMediaSize.Location = New System.Drawing.Point(332, 59)
+        Me.cmdChangeMediaSize.Name = "cmdChangeMediaSize"
+        Me.cmdChangeMediaSize.Size = New System.Drawing.Size(22, 22)
+        Me.cmdChangeMediaSize.TabIndex = 12
+        Me.cmdChangeMediaSize.UseVisualStyleBackColor = True
         '
         'RN_UCLayoutItem
         '
@@ -193,6 +206,7 @@ Partial Class RN_UCLayoutItem
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Controls.Add(Me.cmdChangeMediaSize)
         Me.Controls.Add(Me.cmbPapersize)
         Me.Controls.Add(Me.radioLandscape)
         Me.Controls.Add(Me.radioPortrait)
@@ -229,4 +243,5 @@ Partial Class RN_UCLayoutItem
     Friend WithEvents radioPortrait As Windows.Forms.RadioButton
     Friend WithEvents radioLandscape As Windows.Forms.RadioButton
     Friend WithEvents cmbPapersize As Windows.Forms.ComboBox
+    Friend WithEvents cmdChangeMediaSize As Windows.Forms.Button
 End Class
