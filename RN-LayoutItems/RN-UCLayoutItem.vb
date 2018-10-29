@@ -23,7 +23,7 @@ Public Class RN_UCLayoutItem
     Private iControlWidth As Integer = 360
     Private sPlotOrientation As String = "portrait"
     Private bDisplayPlotStyle As Boolean = True
-    Private dtPlotMediaList As System.Data.DataTable
+    Private dtPlotMediaList As System.Data.DataTable = New System.Data.DataTable
     Private bReadSettings As Boolean = False
     Private sChoosenMediaSize As String = ""
     Private iChoosenMediaSizeCurrent As Integer = 0
@@ -227,7 +227,7 @@ Public Class RN_UCLayoutItem
         txtLayoutName.Text = sLayoutName
         txtLayoutName.Visible = bIsEdit
         If bIsEdit Then 'set focus to textbox
-            txtLayoutName.Width = lblLayoutName.Width
+            txtLayoutName.Width = Me.Width 'lblLayoutName.Width
             txtLayoutName.Focus()
         End If
         lblLayoutName.Text = sLayoutName
@@ -259,7 +259,7 @@ Public Class RN_UCLayoutItem
         End If
         lblPlotdevice.Left = lblPlotStyle.Left + lblPlotStyle.Width
         'cmbPapersize.Width = (cmdChangeMediaSize.Left - cmbPapersize.Left) - 10
-        cmbPapersize.Width = (dItemWidth - cmbPapersize.Left) + 40
+        cmbPapersize.Width = (dItemWidth - cmbPapersize.Left) + 80
         'set width
         If dItemWidth > iControlWidth Then
             Me.Width = dItemWidth
@@ -279,10 +279,12 @@ Public Class RN_UCLayoutItem
             chkPlotStyles.Checked = False
         End If
         'list plot media
-        cmbPapersize.DataSource = dtPlotMediaList
-        cmbPapersize.DisplayMember = "media"
-        cmbPapersize.ValueMember = "id"
-        cmbPapersize.SelectedIndex = iChoosenMediaSizeCurrent
+        If dtPlotMediaList IsNot Nothing And Not dtPlotMediaList.Rows.Count = 0 Then
+            cmbPapersize.DataSource = dtPlotMediaList
+            cmbPapersize.DisplayMember = "media"
+            cmbPapersize.ValueMember = "id"
+            cmbPapersize.SelectedIndex = iChoosenMediaSizeCurrent
+        End If
         'collapse
         collapes()
         'redraw
@@ -460,6 +462,6 @@ Public Class RN_UCLayoutItem
     End Sub
 
     Private Sub cmbPapersize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPapersize.SelectedIndexChanged
-        sChoosenMediaSize = cmbPapersize.SelectedValue
+        sChoosenMediaSize = cmbPapersize.SelectedValue.ToString
     End Sub
 End Class

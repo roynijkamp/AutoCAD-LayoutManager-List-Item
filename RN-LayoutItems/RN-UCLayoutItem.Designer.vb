@@ -201,8 +201,8 @@ Partial Class RN_UCLayoutItem
         'RN_UCLayoutItem
         '
         Me.AllowDrop = True
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
