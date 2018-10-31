@@ -30,6 +30,7 @@ Partial Class RN_UCLayoutItem
         Me.cmdView = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pcbTransparency = New System.Windows.Forms.PictureBox()
+        Me.cmdChangeMediaSize = New System.Windows.Forms.Button()
         Me.lblPlotStyle = New System.Windows.Forms.Label()
         Me.lblPlotdevice = New System.Windows.Forms.Label()
         Me.cmdCollapse = New System.Windows.Forms.Button()
@@ -37,7 +38,7 @@ Partial Class RN_UCLayoutItem
         Me.radioPortrait = New System.Windows.Forms.RadioButton()
         Me.radioLandscape = New System.Windows.Forms.RadioButton()
         Me.cmbPapersize = New System.Windows.Forms.ComboBox()
-        Me.cmdChangeMediaSize = New System.Windows.Forms.Button()
+        Me.chkPlotTransparency = New System.Windows.Forms.CheckBox()
         CType(Me.pcbTransparency, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -111,6 +112,18 @@ Partial Class RN_UCLayoutItem
         Me.ToolTip1.SetToolTip(Me.pcbTransparency, "Plot met Transparatie is uitgeschakeld" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Klik om het afdrukken met Transparatie in" &
         " te schakelen")
         '
+        'cmdChangeMediaSize
+        '
+        Me.cmdChangeMediaSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdChangeMediaSize.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_page_size
+        Me.cmdChangeMediaSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.cmdChangeMediaSize.Location = New System.Drawing.Point(332, 63)
+        Me.cmdChangeMediaSize.Name = "cmdChangeMediaSize"
+        Me.cmdChangeMediaSize.Size = New System.Drawing.Size(22, 22)
+        Me.cmdChangeMediaSize.TabIndex = 12
+        Me.ToolTip1.SetToolTip(Me.cmdChangeMediaSize, "Gekozen papier formaat toepassen op Layout")
+        Me.cmdChangeMediaSize.UseVisualStyleBackColor = True
+        '
         'lblPlotStyle
         '
         Me.lblPlotStyle.AutoSize = True
@@ -170,7 +183,7 @@ Partial Class RN_UCLayoutItem
         'radioLandscape
         '
         Me.radioLandscape.AutoSize = True
-        Me.radioLandscape.Location = New System.Drawing.Point(57, 64)
+        Me.radioLandscape.Location = New System.Drawing.Point(64, 64)
         Me.radioLandscape.Name = "radioLandscape"
         Me.radioLandscape.Size = New System.Drawing.Size(78, 17)
         Me.radioLandscape.TabIndex = 10
@@ -182,21 +195,20 @@ Partial Class RN_UCLayoutItem
         '
         Me.cmbPapersize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbPapersize.FormattingEnabled = True
-        Me.cmbPapersize.Location = New System.Drawing.Point(141, 60)
+        Me.cmbPapersize.Location = New System.Drawing.Point(141, 64)
         Me.cmbPapersize.Name = "cmbPapersize"
         Me.cmbPapersize.Size = New System.Drawing.Size(189, 21)
         Me.cmbPapersize.TabIndex = 11
         '
-        'cmdChangeMediaSize
+        'chkPlotTransparency
         '
-        Me.cmdChangeMediaSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdChangeMediaSize.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_page_size
-        Me.cmdChangeMediaSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.cmdChangeMediaSize.Location = New System.Drawing.Point(332, 59)
-        Me.cmdChangeMediaSize.Name = "cmdChangeMediaSize"
-        Me.cmdChangeMediaSize.Size = New System.Drawing.Size(22, 22)
-        Me.cmdChangeMediaSize.TabIndex = 12
-        Me.cmdChangeMediaSize.UseVisualStyleBackColor = True
+        Me.chkPlotTransparency.AutoSize = True
+        Me.chkPlotTransparency.Location = New System.Drawing.Point(142, 41)
+        Me.chkPlotTransparency.Name = "chkPlotTransparency"
+        Me.chkPlotTransparency.Size = New System.Drawing.Size(112, 17)
+        Me.chkPlotTransparency.TabIndex = 13
+        Me.chkPlotTransparency.Text = "Plot Transparency"
+        Me.chkPlotTransparency.UseVisualStyleBackColor = True
         '
         'RN_UCLayoutItem
         '
@@ -206,6 +218,7 @@ Partial Class RN_UCLayoutItem
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackgroundImage = Global.RN_LayoutItems.My.Resources.Resources.icon_drag_32x15
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Controls.Add(Me.chkPlotTransparency)
         Me.Controls.Add(Me.cmdChangeMediaSize)
         Me.Controls.Add(Me.cmbPapersize)
         Me.Controls.Add(Me.radioLandscape)
@@ -244,4 +257,5 @@ Partial Class RN_UCLayoutItem
     Friend WithEvents radioLandscape As Windows.Forms.RadioButton
     Friend WithEvents cmbPapersize As Windows.Forms.ComboBox
     Friend WithEvents cmdChangeMediaSize As Windows.Forms.Button
+    Friend WithEvents chkPlotTransparency As Windows.Forms.CheckBox
 End Class

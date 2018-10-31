@@ -10,6 +10,7 @@ Public Class RN_UCLayoutItem
     Private sLayoutName As String = "Not Set"
     Private sLayoutNameOld As String = "" 'Old value before edit
     Private bIsEdit As Boolean = False
+    Private bGetsUpdates As Boolean = False
     Private bIsModel As Boolean = False
     Private bCheckState As Boolean = False
     Private bGetDragged As Boolean = False
@@ -20,7 +21,7 @@ Public Class RN_UCLayoutItem
     Private bIsCollapsed As Boolean = True
     Private iMinHeight As Integer = 40
     Private iMaxHeigt As Integer = 95
-    Private iControlWidth As Integer = 360
+    Private iControlWidth As Integer = 460
     Private sPlotOrientation As String = "portrait"
     Private bDisplayPlotStyle As Boolean = True
     Private dtPlotMediaList As System.Data.DataTable = New System.Data.DataTable
@@ -224,6 +225,7 @@ Public Class RN_UCLayoutItem
     ''' <returns>true</returns>
 
     Public Function updateItem()
+        bGetsUpdates = True
         txtLayoutName.Text = sLayoutName
         txtLayoutName.Visible = bIsEdit
         If bIsEdit Then 'set focus to textbox
@@ -238,9 +240,11 @@ Public Class RN_UCLayoutItem
         lblPlotdevice.Visible = Not bIsEdit
         If bPlotTransparency Then
             pcbTransparency.BackgroundImage = My.Resources.icon_transparency_on
+            chkPlotTransparency.Checked = True
             ToolTip1.SetToolTip(pcbTransparency, "Plot met Transparatie is ingeschakeld" & vbCrLf & "Klik om het afdrukken met Transparatie uit te schakelen")
         Else
             pcbTransparency.BackgroundImage = My.Resources.icon_transparency_off
+            chkPlotTransparency.Checked = False
             ToolTip1.SetToolTip(pcbTransparency, "Plot met Transparatie is uitgeschakeld" & vbCrLf & "Klik om het afdrukken met Transparatie in te schakelen")
         End If
         If Not bIsModel Then
@@ -258,14 +262,14 @@ Public Class RN_UCLayoutItem
             End If
         End If
         lblPlotdevice.Left = lblPlotStyle.Left + lblPlotStyle.Width
-        'cmbPapersize.Width = (cmdChangeMediaSize.Left - cmbPapersize.Left) - 10
-        cmbPapersize.Width = (dItemWidth - cmbPapersize.Left) + 80
+        'cmbPapersize.Width = (dItemWidth - cmbPapersize.Left) + 80
         'set width
         If dItemWidth > iControlWidth Then
             Me.Width = dItemWidth
         Else
             Me.Width = iControlWidth
         End If
+        cmbPapersize.Width = (Me.Width * 0.65)
         'set plot orientation
         If sPlotOrientation = "portrait" Then
             radioPortrait.Checked = True
@@ -291,6 +295,7 @@ Public Class RN_UCLayoutItem
         Me.Update()
         'reset just read settings
         bReadSettings = False
+        bGetsUpdates = False
         Return True
     End Function
 
@@ -383,6 +388,11 @@ Public Class RN_UCLayoutItem
         RaiseEvent plotTransparency_Click(Me, e)
     End Sub
 
+    Private Sub chkPlotTransparency_CheckStateChanged(sender As Object, e As EventArgs) Handles chkPlotTransparency.CheckStateChanged
+        If bGetsUpdates = False Then 'alleen bij fysieke Click doorgeven
+            RaiseEvent plotTransparency_Click(Me, e)
+        End If
+    End Sub
 
     Public Event Plot_Click(sender As Object, e As EventArgs)
 
@@ -464,4 +474,6 @@ Public Class RN_UCLayoutItem
     Private Sub cmbPapersize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPapersize.SelectedIndexChanged
         sChoosenMediaSize = cmbPapersize.SelectedValue.ToString
     End Sub
+
+
 End Class
